@@ -1,5 +1,9 @@
 package com.pluralsight;
 
-public class OrderItem {
+public interface OrderItem {
+    // Returns price of item
+    double getPrice();
 
+    // Returns a string for the receipt/display
+    String getDescription();
 }
