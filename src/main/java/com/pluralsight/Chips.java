@@ -14,6 +14,7 @@ public class Chips implements OrderItem{
 
     @Override
     public String getDescription() {
-        return String.format("CHIPS: %s (%.2f)", type, getPrice());
+        String item = String.format("Chips (%s)", type);
+        return String.format("%-28s %10.2f", item, getPrice());
     }
 }

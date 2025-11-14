@@ -18,7 +18,7 @@ public class DeliApplication {
         homeScreen();
     }
 
-    // --- HOME SCREEN [cite: 39] ---
+    // --- HOME SCREEN  ---
     private void homeScreen() {
         boolean running = true;
         while (running) {
@@ -50,7 +50,7 @@ public class DeliApplication {
         }
     }
 
-    // --- ORDER SCREEN [cite: 44] ---
+    // --- ORDER SCREEN  ---
     private void orderScreen() {
         boolean ordering = true;
         while (ordering) {

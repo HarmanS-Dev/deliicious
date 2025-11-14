@@ -69,30 +69,32 @@ public class Sandwich implements OrderItem {
 
     @Override
     public String getDescription() {
-        double totalToppingCost = 0.0;
+        // 1. Line for Base Sandwich Price
+        StringBuilder sb = new StringBuilder();
+        double basePrice = getBaseBreadPrice(size);
 
-        List<String> premium = new ArrayList<>();
-        List<String> regular = new ArrayList<>();
+        // Format: [Size] [Bread] (Toasted) ......... [Base Price]
+        sb.append(String.format("%-28s %10.2f",
+                size + " " + breadType + " Sandwich" + (isToasted ? " (Toasted)" : ""),
+                basePrice));
 
+        // 2. Lines for Topping Costs
         for (Topping t : toppings) {
-            totalToppingCost += t.getPrice(size);
-            if (t instanceof PremiumTopping) {
-                premium.add(t.getName() + " ($" + String.format("%.2f", t.getPrice(size)) + ")");
+            double cost = t.getPrice(size);
+            if (cost > 0.001 || !t.isExtra()) { // Show all toppings for clear receipt
+                // If it's a premium item, show the cost
+                String toppingName = "  - " + t.getName();
+
+                // Align topping cost on a new line
+                sb.append("\n");
+                sb.append(String.format("%-28s %10.2f", toppingName, cost));
             } else {
-                regular.add(t.getName());
+                // For included toppings, simply list them without a price column
+                String toppingName = "  - " + t.getName();
+                sb.append("\n");
+                sb.append(String.format("%-28s", toppingName));
             }
         }
-        StringBuilder sb = new StringBuilder();
-        sb.append(String.format("SANDWICH: %s %s Bread ($%.2f Base)", size, breadType, getBaseBreadPrice(size)));
-        if (isToasted) {
-            sb.append(", Toasted");
-        }
-        sb.append(String.format(" | Total Price: $%.2f", getPrice()));
-        sb.append("\n    - Premium Toppings (Cost: $").append(String.format("%.2f", totalToppingCost)).append("): ")
-                .append(premium.isEmpty() ? "None" : String.join(", ", premium));
-        sb.append("\n    - Regular Toppings (Included): ")
-                .append(regular.isEmpty() ? "None" : String.join(", ", regular));
-
         return sb.toString();
     }
 
