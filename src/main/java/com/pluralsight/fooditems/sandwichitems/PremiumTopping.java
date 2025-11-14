@@ -26,9 +26,9 @@ public class PremiumTopping implements Topping {
         if (isMeat) {
             if (extra) {
                 return switch (size) {
-                    case "4\"" -> 0.50;
-                    case "8\"" -> 1.00;
-                    case "12\"" -> 1.50;
+                    case "4\"" -> 1.50;
+                    case "8\"" -> 3.00;
+                    case "12\"" -> 4.50;
                     default -> 0.0;
                 };
             } else {
@@ -42,9 +42,9 @@ public class PremiumTopping implements Topping {
         } else {
             if (extra) {
                 return switch (size) {
-                    case "4\"" -> 0.30;
-                    case "8\"" -> 0.60;
-                    case "12\"" -> 0.90;
+                    case "4\"" -> 1.05;
+                    case "8\"" -> 2.10;
+                    case "12\"" -> 3.15;
                     default -> 0.0;
                 };
             } else {
