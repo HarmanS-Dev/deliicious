@@ -1,6 +1,6 @@
-package com.pluralsight;
+package com.pluralsight.fooditems.sandwichitems;
 
-public class PremiumTopping implements Topping{
+public class PremiumTopping implements Topping {
     protected String name;
     protected boolean extra;
     protected boolean isMeat; // True for meat, False for cheese

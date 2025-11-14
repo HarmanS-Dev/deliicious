@@ -1,4 +1,6 @@
-package com.pluralsight;
+package com.pluralsight.fooditems;
+
+import com.pluralsight.OrderItem;
 
 public class Drink implements OrderItem {
     private String size;

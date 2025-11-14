@@ -1,6 +1,8 @@
-package com.pluralsight;
+package com.pluralsight.fooditems;
 
-public class Chips implements OrderItem{
+import com.pluralsight.OrderItem;
+
+public class Chips implements OrderItem {
     private String type;
 
     public Chips(String type) {

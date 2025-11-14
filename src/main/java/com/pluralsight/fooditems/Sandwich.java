@@ -1,8 +1,13 @@
-package com.pluralsight;
+package com.pluralsight.fooditems;
+
+import com.pluralsight.*;
+import com.pluralsight.fooditems.sandwichitems.Cheese;
+import com.pluralsight.fooditems.sandwichitems.Meat;
+import com.pluralsight.fooditems.sandwichitems.RegularTopping;
+import com.pluralsight.fooditems.sandwichitems.Topping;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Sandwich implements OrderItem {
     private String size;

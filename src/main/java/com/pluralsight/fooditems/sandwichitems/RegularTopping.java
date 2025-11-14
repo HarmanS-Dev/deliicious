@@ -1,6 +1,6 @@
-package com.pluralsight;
+package com.pluralsight.fooditems.sandwichitems;
 
-public class RegularTopping implements Topping{
+public class RegularTopping implements Topping {
     private String name;
 
     public  RegularTopping(String name) {

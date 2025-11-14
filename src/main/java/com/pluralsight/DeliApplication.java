@@ -1,5 +1,8 @@
 package com.pluralsight;
 
+import com.pluralsight.fooditems.*;
+import com.pluralsight.fooditems.signaturesandwich.*;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -59,9 +62,10 @@ public class DeliApplication {
 
             System.out.println("\n--- ORDER OPTIONS ---");
             System.out.println("1) Add Sandwich");
-            System.out.println("2) Add Drink");
-            System.out.println("3) Add Chips");
-            System.out.println("4) Checkout");
+            System.out.println("2) Add Signature Sandwich");
+            System.out.println("3) Add Drink");
+            System.out.println("4) Add Chips");
+            System.out.println("5) Checkout");
             System.out.println("0) Cancel Order (Return to Home)");
             System.out.print("Please select an option: ");
 
@@ -71,9 +75,10 @@ public class DeliApplication {
 
                 switch (choice) {
                     case 1: addSandwichScreen(); break;
-                    case 2: addDrinkScreen(); break;
-                    case 3: addChipsScreen(); break;
-                    case 4:
+                    case 2: addSignatureSandwichScreen(); break;
+                    case 3: addDrinkScreen(); break;
+                    case 4: addChipsScreen(); break;
+                    case 5:
                         checkoutScreen();
                         ordering = false; // Exit order loop after checkout/cancel
                         break;
@@ -101,6 +106,57 @@ public class DeliApplication {
                 System.out.println("  - " + item.getDescription().split("\n")[0]); // Just display the main line
             }
             System.out.printf("Current Total: $%.2f\n", currentOrder.getTotalCost());
+        }
+    }
+
+    private void addSignatureSandwichScreen() {
+        System.out.println("\n--- SELECT SIGNATURE SANDWICH ---");
+        System.out.println("1) BLT (8\" White, Bacon, Cheddar, Lettuce, Tomato, Ranch, Toasted)");
+        System.out.println("2) Philly Cheese Steak (8\" White, Steak, American, Peppers, Mayo, Toasted)");
+        System.out.println("3) The Basic T (8\" White, Turkey, Swiss, Lettuce, Tomato, Mayo, Toasted");
+        System.out.println("0) Back to Order Screen");
+        System.out.print("Enter choice: ");
+
+        try {
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
+
+            Sandwich signatureSandwich = null;
+
+            switch (choice) {
+                case 1:
+                    signatureSandwich = new BLT();
+                    System.out.println("BLT selected.");
+                    break;
+                case 2:
+                    signatureSandwich = new PhillyCheesesteak();
+                    System.out.println("Philly Cheese Steak selected.");
+                    break;
+                case 3:
+                    signatureSandwich = new TurkeySandwich();
+                    System.out.println("The Basic T selected.");
+                    break;
+                case 0: return; // Go back
+                default:
+                    System.out.println("Invalid choice. Returning to menu.");
+                    return;
+            }
+
+            // --- Customization Step ---
+            System.out.print("\nWould you like to customize this signature sandwich? (y/n): ");
+            if (scanner.nextLine().trim().toLowerCase().startsWith("y")) {
+
+                addPremiumToppings(signatureSandwich, "Extra Meat", new String[]{"Steak", "Ham", "Salami", "Roast Beef", "Chicken", "Bacon"});
+                addPremiumToppings(signatureSandwich, "Extra Cheese", new String[]{"American", "Provolone", "Cheddar", "Swiss"});
+                addRegularToppings(signatureSandwich, "Other Toppings", new String[]{"Lettuce", "Peppers", "Onions", "Tomatoes", "Jalapeños", "Cucumbers", "Pickles", "Guacamole", "Mushrooms"});
+            }
+
+            currentOrder.addItem(signatureSandwich);
+            System.out.println("\n✅ Signature Sandwich added to order!");
+
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input. Please enter a number.");
+            scanner.nextLine();
         }
     }
 

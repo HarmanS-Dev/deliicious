@@ -1,4 +1,8 @@
 package com.pluralsight;
+import com.pluralsight.fooditems.Chips;
+import com.pluralsight.fooditems.Drink;
+import com.pluralsight.fooditems.Sandwich;
+
 import java.util.ArrayList;
 import java.util.List;
 
