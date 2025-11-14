@@ -22,6 +22,28 @@ public class Sandwich implements OrderItem {
         this.toppings.add(topping);
     }
 
+    public void addRegularTopping(String toppingName) {
+        // Regular toppings are included (zero additional cost)
+        RegularTopping regular = new RegularTopping(toppingName);
+        addTopping(regular);
+    }
+
+    public void addMeat(String meatName, boolean isExtra) {
+        Meat meat = new Meat(meatName, isExtra);
+        addTopping(meat);
+    }
+
+    public void addCheese(String cheeseName, boolean isExtra) {
+        Cheese cheese = new Cheese(cheeseName, isExtra);
+        addTopping(cheese);
+    }
+
+    public void addSide(String sideName) {
+        // Sides are included (RegularTopping)
+        RegularTopping side = new RegularTopping(sideName);
+        addTopping(side);
+    }
+
     // Price Calculation
     @Override
     public  double getPrice() {
