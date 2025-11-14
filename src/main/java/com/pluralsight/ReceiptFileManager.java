@@ -6,10 +6,13 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class ReceiptFileManager {
-    private static final String RECEIPT_FOLDER = "receipts/";
+    private static final String RECEIPT_FOLDER = "src/main/resources/receipts/";
 
     public static void saveReceipt(Order order) {
         java.io.File folder = new java.io.File(RECEIPT_FOLDER);
+        if (!folder.exists()) {
+            folder.mkdirs();
+        }
 
         // Generate the filename: yyyyMMdd-hhmmss.txt
         LocalDateTime now = LocalDateTime.now();
